@@ -1,26 +1,54 @@
 import React from "react";
 import {
   View,
-  Text,
+  TextInput,
   StyleSheet,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
-const SearchBar = () => {
+const SearchBar = ({
+  term,
+  onTermChange,
+  onTermSubmit,
+}) => {
   return (
-    <View style={styles.background}>
-      <Feather name="search" size={30} />
-      <Text>Search Bar</Text>
+    <View style={styles.backgroundStyle}>
+      <Feather
+        name="search"
+        style={styles.iconStyle}
+      />
+      <TextInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholder="Search"
+        style={styles.inputStyle}
+        value={term}
+        onChangeText={(newTerm) =>
+          onTermChange(newTerm)
+        }
+        //Two ways of calling cb functions passing the function directly(below) or calling it fully(above)
+        onEndEditing={onTermSubmit}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  background: {
+  backgroundStyle: {
     backgroundColor: "#d3d3d3",
     height: 50,
     borderRadius: 5,
     margin: 15,
+    flexDirection: "row",
+  },
+  inputStyle: {
+    flex: 1,
+    fontSize: 18,
+  },
+  iconStyle: {
+    fontSize: 35,
+    alignSelf: "center",
+    marginHorizontal: 15,
   },
 });
 

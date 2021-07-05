@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,10 +7,21 @@ import {
 import SearchBar from "../components/SearchBar";
 
 const SearchScreen = () => {
+  const [term, setTerm] = useState("");
+
   return (
     <View>
-      <SearchBar />
+      <SearchBar
+        term={term}
+        onTermChange={(newTerm) =>
+          setTerm(newTerm)
+        }
+        onTermSubmit={() => {
+          console.log("Term was submitted");
+        }}
+      />
       <Text>Search Screen</Text>
+      <Text>{term}</Text>
     </View>
   );
 };
