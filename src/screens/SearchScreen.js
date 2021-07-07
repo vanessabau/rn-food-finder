@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  View,
   Text,
   StyleSheet,
   ScrollView,
@@ -24,15 +23,15 @@ const SearchScreen = () => {
   };
 
   return (
-    <View>
+    <>
       <SearchBar
         term={term}
-        // onTermChange={(newTerm) =>
-        //   setTerm(newTerm)
-        // }
-        //  onTermSubmit={() => searchApi()} OR
-        onTermChange={setTerm}
-        onTermSubmit={searchApi}
+        onTermChange={(newTerm) =>
+          setTerm(newTerm)
+        }
+        onTermSubmit={() => searchApi(term)}
+        // onTermChange={setTerm}
+        // onTermSubmit={searchApi}
       />
       {errorMessage ? (
         <Text>{errorMessage}</Text>
@@ -56,7 +55,7 @@ const SearchScreen = () => {
           title="Priciest"
         />
       </ScrollView>
-    </View>
+    </>
   );
 };
 
